@@ -292,10 +292,14 @@ static NSString *SUDownloadingReason = @"Downloading update related file";
 
 - (void)URLSession:(NSURLSession *)__unused session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
  completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential *))completionHandler {
+    NSLog(@"Heeer1");
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-        NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+        // NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+        NSLog(@"Heeer2");
+        NSURLCredential *credential = [[NSURLCredential alloc] initWithTrust:[challenge protectionSpace].serverTrust];
         completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
     } else {
+        NSLog(@"Heeer3");
         completionHandler(NSURLSessionAuthChallengeCancelAuthenticationChallenge, nil);
     }
 }
