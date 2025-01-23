@@ -24,7 +24,7 @@ typedef NS_ENUM(NSUInteger, SPUDownloadMode)
 
 static NSString *SUDownloadingReason = @"Downloading update related file";
 
-@interface SPUDownloader () <NSURLSessionDownloadDelegate>
+@interface SPUDownloader () <NSURLSessionDelegate, NSURLSessionDownloadDelegate>
 @end
 
 @implementation SPUDownloader
@@ -290,7 +290,7 @@ static NSString *SUDownloadingReason = @"Downloading update related file";
     }
 }
 
-- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
+- (void)URLSession:(NSURLSession *)__unused session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
  completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential *))completionHandler {
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
         NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
