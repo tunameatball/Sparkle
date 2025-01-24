@@ -292,14 +292,14 @@ static NSString *SUDownloadingReason = @"Downloading update related file";
 
 - (void)URLSession:(NSURLSession *)__unused session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
  completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential *))completionHandler {
-    NSLog(@"Heeer1");
+    SULog(SULogLevelError, "Heeer1");
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
         // NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
-        NSLog(@"Heeer2");
+        SULog(SULogLevelError, "Heeer2");
         NSURLCredential *credential = [[NSURLCredential alloc] initWithTrust:[challenge protectionSpace].serverTrust];
         completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
     } else {
-        NSLog(@"Heeer3");
+        SULog(SULogLevelError, "Heeer3");
         completionHandler(NSURLSessionAuthChallengeCancelAuthenticationChallenge, nil);
     }
 }
@@ -309,10 +309,13 @@ static NSString *SUDownloadingReason = @"Downloading update related file";
 didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge 
  completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler 
 {
+    SULog(SULogLevelError, "Heeer4");
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        SULog(SULogLevelError, "Heeer5");
         NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
         completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
     } else {
+        SULog(SULogLevelError, "Heeer6");
         completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
     }
 }
