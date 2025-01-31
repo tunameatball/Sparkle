@@ -293,15 +293,20 @@ static NSString *SUDownloadingReason = @"Downloading update related file";
 - (void)URLSession:(NSURLSession *)__unused session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
  completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential *))completionHandler {
     SULog(SULogLevelError, "Heeer1");
-    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-        // NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
-        SULog(SULogLevelError, "Heeer2");
-        NSURLCredential *credential = [[NSURLCredential alloc] initWithTrust:[challenge protectionSpace].serverTrust];
-        completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
-    } else {
-        SULog(SULogLevelError, "Heeer3");
-        completionHandler(NSURLSessionAuthChallengeCancelAuthenticationChallenge, nil);
-    }
+    NSLog("Heeer4");
+    
+    NSURLCredential *credential = [[NSURLCredential alloc] initWithTrust:challenge.protectionSpace.serverTrust];
+    completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
+
+    // if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+    //     // NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+    //     SULog(SULogLevelError, "Heeer2");
+    //     NSURLCredential *credential = [[NSURLCredential alloc] initWithTrust:[challenge protectionSpace].serverTrust];
+    //     completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
+    // } else {
+    //     SULog(SULogLevelError, "Heeer3");
+    //     completionHandler(NSURLSessionAuthChallengeCancelAuthenticationChallenge, nil);
+    // }
 }
 
 - (void)URLSession:(NSURLSession *)session 
@@ -310,14 +315,19 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
  completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler 
 {
     SULog(SULogLevelError, "Heeer4");
-    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-        SULog(SULogLevelError, "Heeer5");
-        NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
-        completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
-    } else {
-        SULog(SULogLevelError, "Heeer6");
-        completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
-    }
+    NSLog("Heeer4");
+
+    NSURLCredential *credential = [[NSURLCredential alloc] initWithTrust:challenge.protectionSpace.serverTrust];
+    completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
+
+    // if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+    //     SULog(SULogLevelError, "Heeer5");
+    //     NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+    //     completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
+    // } else {
+    //     SULog(SULogLevelError, "Heeer6");
+    //     completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
+    // }
 }
 
 // NSURLDownload has a [downlaod:shouldDecodeSourceDataOfMIMEType:] to determine if the data should be decoded.
