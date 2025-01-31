@@ -55,6 +55,8 @@ static NSString *SUDownloadingReason = @"Downloading update related file";
 
 - (void)startDownloadWithRequest:(NSURLRequest *)request SPU_OBJC_DIRECT
 {
+    SULog(SULogLevelError, "Start Download with Request");
+    NSLog("Start Download with Request");
     _downloadSession = [NSURLSession
         sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
         delegate:self
@@ -67,7 +69,8 @@ static NSString *SUDownloadingReason = @"Downloading update related file";
 
 - (void)startPersistentDownloadWithRequest:(NSURLRequest *)request bundleIdentifier:(NSString *)bundleIdentifier desiredFilename:(NSString *)desiredFilename
 {
-    SULog(SULogLevelDefault, "Persistant Download");
+    SULog(SULogLevelError, "Persistant Download");
+    NSLog("Persistant Download");
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self->_download == nil && self->_delegate != nil) {
             // Prevent service from automatically terminating while downloading the update asynchronously without any reply blocks
@@ -85,7 +88,8 @@ static NSString *SUDownloadingReason = @"Downloading update related file";
 
 - (void)startTemporaryDownloadWithRequest:(NSURLRequest *)request
 {
-    SULog(SULogLevelDefault, "TEMP Download");
+    SULog(SULogLevelError, "TEMP Download");
+    NSLog("TEMP Download");
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self->_download == nil && self->_delegate != nil) {
             // Prevent service from automatically terminating while downloading the update asynchronously without any reply blocks
