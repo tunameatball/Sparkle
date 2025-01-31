@@ -90,6 +90,7 @@
 
 - (void)downloadDriverDidFailToDownloadFileWithError:(nonnull NSError *)error
 {
+    SULog(SULogLevelError, "TEST ERROR");
     SULog(SULogLevelError, @"Encountered download feed error: %@", error);
 
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:@{NSLocalizedDescriptionKey:SULocalizedStringFromTableInBundle(@"An error occurred in retrieving update information. Please try again later.", SPARKLE_TABLE, SUSparkleBundle(), nil)}];
